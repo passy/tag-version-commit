@@ -2956,12 +2956,13 @@ function run() {
             const version_tag_prefix = core_1.getInput('version_tag_prefix');
             const annotated = core_1.getInput('annotated') === 'true';
             const dry_run = core_1.getInput('dry_run') === 'true';
+            const ref = core_1.getInput('ref');
             // Validate regex (will throw if invalid)
             const regex = new RegExp(version_regex);
             // Get data from context
             const repo_owner = github_1.context.repo.owner;
             const repo_name = github_1.context.repo.repo;
-            const commit_sha = 'HEAD';
+            const commit_sha = ref || github_1.context.sha;
             const octokit = new github_1.GitHub(token);
             // Get message of last commit
             const commit = yield octokit.git.getCommit({

@@ -15,6 +15,10 @@ inputs:
     description: |
       GitHub token, required for permission to create a tag.
     required: true
+  ref:
+    description: |
+      GitHub sha to run against. Not required, will default to push value.
+    required: false
   version_regex:
     description: |
       The version regex to use for detecting version in commit messages.

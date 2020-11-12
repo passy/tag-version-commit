@@ -11,6 +11,7 @@ export async function run(): Promise<void> {
     const version_tag_prefix = getInput('version_tag_prefix');
     const annotated = getInput('annotated') === 'true';
     const dry_run = getInput('dry_run') === 'true';
+    const ref = getInput('ref');
 
     // Validate regex (will throw if invalid)
     const regex = new RegExp(version_regex);
@@ -18,7 +19,7 @@ export async function run(): Promise<void> {
     // Get data from context
     const repo_owner = context.repo.owner;
     const repo_name = context.repo.repo;
-    const commit_sha = 'HEAD';
+    const commit_sha = ref || context.sha;
 
     const octokit = new GitHub(token);
 
