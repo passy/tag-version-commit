@@ -18,7 +18,7 @@ export async function run(): Promise<void> {
     // Get data from context
     const repo_owner = context.repo.owner;
     const repo_name = context.repo.repo;
-    const commit_sha = context.sha;
+    const commit_sha = 'HEAD';
 
     const octokit = new GitHub(token);
 
