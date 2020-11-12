@@ -2961,7 +2961,7 @@ function run() {
             // Get data from context
             const repo_owner = github_1.context.repo.owner;
             const repo_name = github_1.context.repo.repo;
-            const commit_sha = github_1.context.sha;
+            const commit_sha = 'HEAD';
             const octokit = new github_1.GitHub(token);
             // Get message of last commit
             const commit = yield octokit.git.getCommit({
