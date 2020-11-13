@@ -103,11 +103,9 @@ describe('action', () => {
 
   it('works with a custom ref', async () => {
     process.env['INPUT_REF'] = 'deadbeef';
-    nock('https://api.github.com')
-      .get('/repos/theowner/therepo/git/commits/deadbeef')
-      .reply(200, {
-        message: 'this commit title contains a 8.9.1 version'
-      });
+    nock('https://api.github.com').get('/repos/theowner/therepo/git/commits/deadbeef').reply(200, {
+      message: 'this commit title contains a 8.9.1 version'
+    });
     nock('https://api.github.com')
       .post('/repos/theowner/therepo/git/refs', {ref: 'refs/tags/8.9.1', sha: 'deadbeef'})
       .reply(201, {});
@@ -118,9 +116,7 @@ describe('action', () => {
 
     // Outputs should be empty
     expect(stdout_write).toHaveBeenCalledWith(expect.stringContaining('name=tag::8.9.1'));
-    expect(stdout_write).toHaveBeenCalledWith(
-      expect.stringContaining('name=commit::deadbeef')
-    );
+    expect(stdout_write).toHaveBeenCalledWith(expect.stringContaining('name=commit::deadbeef'));
   });
 
   it('works correctly with the default version regex: version that could match a misformed regex', async () => {
