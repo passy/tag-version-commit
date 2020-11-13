@@ -1,11 +1,10 @@
 # tag-version-commit GitHub Action
 
-[![GitHub Action](https://img.shields.io/badge/action-tag--version--commit-blue?logo=github)](https://github.com/marketplace/actions/tag-version-commit)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/christophebedard/tag-version-commit?color=blue)](https://github.com/christophebedard/tag-version-commit/releases)
-[![GitHub Workflow Status](https://github.com/christophebedard/tag-version-commit/workflows/test/badge.svg?branch=master)](https://github.com/christophebedard/tag-version-commit/actions)
-[![codecov](https://codecov.io/gh/christophebedard/tag-version-commit/branch/master/graph/badge.svg)](https://codecov.io/gh/christophebedard/tag-version-commit)
+**Note: This is a fork from `christophebedard/tag-version-commit` with some non-mainstream
+customisation options. If this seems useful, please let me know, and I'll try and get this
+upstreamed.**
 
-GitHub action for tagging commits whose title matches a version regex.
+> GitHub action for tagging commits whose title matches a version regex.
 
 Some projects maintain a version number somewhere in a file, e.g. `__version__ = '1.2.3'` for a Python project.
 When maintainers want to bump the version, they update that number, commit the change, and tag that commit.
@@ -25,7 +24,7 @@ See [`action.yml`](./action.yml).
 ### Basic
 
 ```yaml
-- uses: christophebedard/tag-version-commit@v1
+- uses: passy/tag-version-commit@v1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -46,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: christophebedard/tag-version-commit@v1
+    - uses: passy/tag-version-commit@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -67,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: christophebedard/tag-version-commit@v1
+    - uses: passy/tag-version-commit@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         version_assertion_command: 'grep -q "\"version\": \"$version\"" package.json'
